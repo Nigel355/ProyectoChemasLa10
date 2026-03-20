@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAO7L2ooiu2pW5gp7_HD_sBqejGV_7AWws</string>
+	<string>AIzaSyBT_f5i7otsLmre-dNz7CgJ4rc3QixkzQI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>539131474805</string>
+	<string>1017933192927</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.mycompany.proyectogrupo09chemasla10</string>
 	<key>PROJECT_ID</key>
-	<string>chemasla10</string>
+	<string>chemasla10-92012</string>
 	<key>STORAGE_BUCKET</key>
-	<string>chemasla10.firebasestorage.app</string>
+	<string>chemasla10-92012.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:539131474805:ios:4c530b1d25faebef7bd93c</string>
+	<string>1:1017933192927:ios:47cfa25612b8934b6b536a</string>
 </dict>
 </plist>
