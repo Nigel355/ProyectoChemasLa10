@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "539131474805",
+    "project_id": "chemasla10",
+    "storage_bucket": "chemasla10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539131474805:android:1f53bde899ef30227bd93c",
+        "android_client_info": {
+          "package_name": "com.mycompany.proyectogrupo09chemasla10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0m34YRyxpLW66JcpbuTyitNCCquD4u2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
