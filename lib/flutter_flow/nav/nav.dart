@@ -103,6 +103,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: RegisterPageWidget.routeName,
           path: RegisterPageWidget.routePath,
           builder: (context, params) => RegisterPageWidget(),
+        ),
+        FFRoute(
+          name: ComponenteCamisetasWidget.routeName,
+          path: ComponenteCamisetasWidget.routePath,
+          builder: (context, params) => ComponenteCamisetasWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

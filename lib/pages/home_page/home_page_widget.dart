@@ -558,15 +558,30 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               ),
                                               child: Stack(
                                                 children: [
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/Captura_de_pantalla_20-2-2026_1753_www.instagram.com.jpeg',
-                                                      width: 200.0,
-                                                      height: 200.0,
-                                                      fit: BoxFit.contain,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                          ComponenteCamisetasWidget
+                                                              .routeName);
+                                                    },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/Captura_de_pantalla_20-2-2026_1753_www.instagram.com.jpeg',
+                                                        width: 200.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                   ),
                                                   Align(
