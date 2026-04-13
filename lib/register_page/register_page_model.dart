@@ -26,17 +26,14 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
   TextEditingController? textfieldPWTextController;
   late bool textfieldPWVisibility;
   String? Function(BuildContext, String?)? textfieldPWTextControllerValidator;
-  // State field(s) for textfieldPWconfirm widget.
-  FocusNode? textfieldPWconfirmFocusNode;
-  TextEditingController? textfieldPWconfirmTextController;
-  late bool textfieldPWconfirmVisibility;
-  String? Function(BuildContext, String?)?
-      textfieldPWconfirmTextControllerValidator;
+  // State field(s) for token widget.
+  FocusNode? tokenFocusNode;
+  TextEditingController? tokenTextController;
+  String? Function(BuildContext, String?)? tokenTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
     textfieldPWVisibility = false;
-    textfieldPWconfirmVisibility = false;
   }
 
   @override
@@ -53,7 +50,7 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     textfieldPWFocusNode?.dispose();
     textfieldPWTextController?.dispose();
 
-    textfieldPWconfirmFocusNode?.dispose();
-    textfieldPWconfirmTextController?.dispose();
+    tokenFocusNode?.dispose();
+    tokenTextController?.dispose();
   }
 }

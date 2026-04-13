@@ -368,7 +368,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget> {
                         }
 
                         context.goNamedAuth(
-                            HomePageWidget.routeName, context.mounted);
+                            WelcomeWidget.routeName, context.mounted);
                       },
                       text: 'Ingresar',
                       options: FFButtonOptions(

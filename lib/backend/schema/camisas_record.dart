@@ -15,49 +15,49 @@ class CamisasRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "name" field.
-  String? _name;
-  String get name => _name ?? '';
-  bool hasName() => _name != null;
+  // "nombre" field.
+  String? _nombre;
+  String get nombre => _nombre ?? '';
+  bool hasNombre() => _nombre != null;
 
-  // "description" field.
-  String? _description;
-  String get description => _description ?? '';
-  bool hasDescription() => _description != null;
+  // "descripcion" field.
+  String? _descripcion;
+  String get descripcion => _descripcion ?? '';
+  bool hasDescripcion() => _descripcion != null;
 
-  // "specifications" field.
-  String? _specifications;
-  String get specifications => _specifications ?? '';
-  bool hasSpecifications() => _specifications != null;
+  // "precio" field.
+  double? _precio;
+  double get precio => _precio ?? 0.0;
+  bool hasPrecio() => _precio != null;
 
-  // "price" field.
-  double? _price;
-  double get price => _price ?? 0.0;
-  bool hasPrice() => _price != null;
+  // "en_oferta" field.
+  bool? _enOferta;
+  bool get enOferta => _enOferta ?? false;
+  bool hasEnOferta() => _enOferta != null;
 
-  // "on_sale" field.
-  bool? _onSale;
-  bool get onSale => _onSale ?? false;
-  bool hasOnSale() => _onSale != null;
+  // "precio_oferta" field.
+  double? _precioOferta;
+  double get precioOferta => _precioOferta ?? 0.0;
+  bool hasPrecioOferta() => _precioOferta != null;
 
-  // "sale_price" field.
-  double? _salePrice;
-  double get salePrice => _salePrice ?? 0.0;
-  bool hasSalePrice() => _salePrice != null;
+  // "cantidad" field.
+  int? _cantidad;
+  int get cantidad => _cantidad ?? 0;
+  bool hasCantidad() => _cantidad != null;
 
-  // "quantity" field.
-  int? _quantity;
-  int get quantity => _quantity ?? 0;
-  bool hasQuantity() => _quantity != null;
+  // "imagen" field.
+  String? _imagen;
+  String get imagen => _imagen ?? '';
+  bool hasImagen() => _imagen != null;
 
   void _initializeFields() {
-    _name = snapshotData['name'] as String?;
-    _description = snapshotData['description'] as String?;
-    _specifications = snapshotData['specifications'] as String?;
-    _price = castToType<double>(snapshotData['price']);
-    _onSale = snapshotData['on_sale'] as bool?;
-    _salePrice = castToType<double>(snapshotData['sale_price']);
-    _quantity = castToType<int>(snapshotData['quantity']);
+    _nombre = snapshotData['nombre'] as String?;
+    _descripcion = snapshotData['descripcion'] as String?;
+    _precio = castToType<double>(snapshotData['precio']);
+    _enOferta = snapshotData['en_oferta'] as bool?;
+    _precioOferta = castToType<double>(snapshotData['precio_oferta']);
+    _cantidad = castToType<int>(snapshotData['cantidad']);
+    _imagen = snapshotData['imagen'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,23 +95,23 @@ class CamisasRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createCamisasRecordData({
-  String? name,
-  String? description,
-  String? specifications,
-  double? price,
-  bool? onSale,
-  double? salePrice,
-  int? quantity,
+  String? nombre,
+  String? descripcion,
+  double? precio,
+  bool? enOferta,
+  double? precioOferta,
+  int? cantidad,
+  String? imagen,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'name': name,
-      'description': description,
-      'specifications': specifications,
-      'price': price,
-      'on_sale': onSale,
-      'sale_price': salePrice,
-      'quantity': quantity,
+      'nombre': nombre,
+      'descripcion': descripcion,
+      'precio': precio,
+      'en_oferta': enOferta,
+      'precio_oferta': precioOferta,
+      'cantidad': cantidad,
+      'imagen': imagen,
     }.withoutNulls,
   );
 
@@ -123,24 +123,24 @@ class CamisasRecordDocumentEquality implements Equality<CamisasRecord> {
 
   @override
   bool equals(CamisasRecord? e1, CamisasRecord? e2) {
-    return e1?.name == e2?.name &&
-        e1?.description == e2?.description &&
-        e1?.specifications == e2?.specifications &&
-        e1?.price == e2?.price &&
-        e1?.onSale == e2?.onSale &&
-        e1?.salePrice == e2?.salePrice &&
-        e1?.quantity == e2?.quantity;
+    return e1?.nombre == e2?.nombre &&
+        e1?.descripcion == e2?.descripcion &&
+        e1?.precio == e2?.precio &&
+        e1?.enOferta == e2?.enOferta &&
+        e1?.precioOferta == e2?.precioOferta &&
+        e1?.cantidad == e2?.cantidad &&
+        e1?.imagen == e2?.imagen;
   }
 
   @override
   int hash(CamisasRecord? e) => const ListEquality().hash([
-        e?.name,
-        e?.description,
-        e?.specifications,
-        e?.price,
-        e?.onSale,
-        e?.salePrice,
-        e?.quantity
+        e?.nombre,
+        e?.descripcion,
+        e?.precio,
+        e?.enOferta,
+        e?.precioOferta,
+        e?.cantidad,
+        e?.imagen
       ]);
 
   @override

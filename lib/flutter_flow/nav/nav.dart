@@ -76,13 +76,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : SignInPageWidget(),
+          appStateNotifier.loggedIn ? WelcomeWidget() : SignInPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : SignInPageWidget(),
+              appStateNotifier.loggedIn ? WelcomeWidget() : SignInPageWidget(),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
@@ -108,6 +108,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ComponenteCamisetasWidget.routeName,
           path: ComponenteCamisetasWidget.routePath,
           builder: (context, params) => ComponenteCamisetasWidget(),
+        ),
+        FFRoute(
+          name: WelcomeWidget.routeName,
+          path: WelcomeWidget.routePath,
+          builder: (context, params) => WelcomeWidget(),
+        ),
+        FFRoute(
+          name: CrudCamisasWidget.routeName,
+          path: CrudCamisasWidget.routePath,
+          builder: (context, params) => CrudCamisasWidget(),
+        ),
+        FFRoute(
+          name: HomePageCopyWidget.routeName,
+          path: HomePageCopyWidget.routePath,
+          builder: (context, params) => HomePageCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

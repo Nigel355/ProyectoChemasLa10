@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -41,8 +42,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
     _model.textfieldPWTextController ??= TextEditingController();
     _model.textfieldPWFocusNode ??= FocusNode();
 
-    _model.textfieldPWconfirmTextController ??= TextEditingController();
-    _model.textfieldPWconfirmFocusNode ??= FocusNode();
+    _model.tokenTextController ??= TextEditingController();
+    _model.tokenFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -529,14 +530,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model
-                                          .textfieldPWconfirmTextController,
-                                      focusNode:
-                                          _model.textfieldPWconfirmFocusNode,
+                                      controller: _model.tokenTextController,
+                                      focusNode: _model.tokenFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.password],
-                                      obscureText:
-                                          !_model.textfieldPWconfirmVisibility,
+                                      obscureText: false,
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -557,7 +555,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                       .labelMedium
                                                       .fontStyle,
                                             ),
-                                        hintText: 'Confirmar contrasena',
+                                        hintText:
+                                            'Ingrese token si es administrador',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFF1F4F8),
@@ -592,23 +591,6 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         ),
                                         filled: true,
                                         fillColor: Color(0xFFF1F4F8),
-                                        suffixIcon: InkWell(
-                                          onTap: () async {
-                                            safeSetState(() => _model
-                                                    .textfieldPWconfirmVisibility =
-                                                !_model
-                                                    .textfieldPWconfirmVisibility);
-                                          },
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
-                                          child: Icon(
-                                            _model.textfieldPWconfirmVisibility
-                                                ? Icons.visibility_outlined
-                                                : Icons.visibility_off_outlined,
-                                            color: Color(0xFF57636C),
-                                            size: 24.0,
-                                          ),
-                                        ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -631,7 +613,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                           ),
                                       minLines: 1,
                                       validator: _model
-                                          .textfieldPWconfirmTextControllerValidator
+                                          .tokenTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -641,22 +623,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      FFAppState().Rol =
+                                          _model.tokenTextController.text ==
+                                                  '1010'
+                                              ? 'administrador'
+                                              : 'cliente';
+                                      safeSetState(() {});
                                       GoRouter.of(context).prepareAuthEvent();
-                                      if (_model
-                                              .textfieldPWTextController.text !=
-                                          _model
-                                              .textfieldPWconfirmTextController
-                                              .text) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Passwords don\'t match!',
-                                            ),
-                                          ),
-                                        );
-                                        return;
-                                      }
 
                                       final user = await authManager
                                           .createAccountWithEmail(
@@ -668,6 +641,22 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                       if (user == null) {
                                         return;
                                       }
+
+                                      await UsersRecord.collection
+                                          .doc(user.uid)
+                                          .update(createUsersRecordData(
+                                            email: _model
+                                                .textfieldEmailTextController
+                                                .text,
+                                            displayName: _model
+                                                .textfieldNombreTextController
+                                                .text,
+                                            phoneNumber: _model
+                                                .textfieldTelefonoTextController
+                                                .text,
+                                            rol: FFAppState().Rol,
+                                            createdTime: getCurrentTimestamp,
+                                          ));
 
                                       context.pushNamedAuth(
                                           SignInPageWidget.routeName,

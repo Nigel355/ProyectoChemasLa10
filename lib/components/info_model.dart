@@ -12,6 +12,8 @@ class InfoModel extends FlutterFlowModel<InfoWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for CountController widget.
+  int? countControllerValue;
 
   @override
   void initState(BuildContext context) {}

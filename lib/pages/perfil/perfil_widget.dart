@@ -61,8 +61,6 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                     decoration: BoxDecoration(
                       color: Color(0xC5F47417),
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(20.0),
                         topRight: Radius.circular(20.0),
                       ),
@@ -99,10 +97,23 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.list,
-                          color: Color(0xFFF08E1E),
-                          size: 50.0,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 0.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.safePop();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Color(0xFFF08E1E),
+                              size: 50.0,
+                            ),
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -126,10 +137,10 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                 },
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(50.0),
-                                    bottomRight: Radius.circular(50.0),
                                     topLeft: Radius.circular(50.0),
                                     topRight: Radius.circular(50.0),
+                                    bottomLeft: Radius.circular(50.0),
+                                    bottomRight: Radius.circular(50.0),
                                   ),
                                   child: Image.asset(
                                     'assets/images/468435173_556031147172337_4766907358856871520_n.jpg',
@@ -154,10 +165,14 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                               color: Color(0xFFF08E1E),
                               size: 50.0,
                             ),
-                            Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Color(0xFFF08E1E),
-                              size: 50.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: Icon(
+                                Icons.shopping_cart_outlined,
+                                color: Color(0xFFF08E1E),
+                                size: 50.0,
+                              ),
                             ),
                           ],
                         ),
@@ -224,12 +239,23 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                           ),
                           Align(
                             alignment: AlignmentDirectional(0.01, 0.42),
-                            child: Text(
-                              'Usuario Invitado',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
+                            child: AuthUserStreamWidget(
+                              builder: (context) => Text(
+                                currentUserDisplayName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .fontWeight,
@@ -237,16 +263,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
+                              ),
                             ),
                           ),
                         ],
@@ -366,31 +383,48 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                       decoration: BoxDecoration(
                         color: Color(0xFFDDDCDC),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xB78F8D8F),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: FaIcon(
-                                FontAwesomeIcons.cog,
-                                color: Color(0xFF262229),
-                                size: 40.0,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(CrudCamisasWidget.routeName);
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xB78F8D8F),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.cog,
+                                  color: Color(0xFF262229),
+                                  size: 40.0,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            'Configuración',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
+                            Text(
+                              'Gestion de productos',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .fontWeight,
@@ -398,17 +432,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
