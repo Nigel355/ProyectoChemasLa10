@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -85,11 +86,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? WelcomeWidget() : SignInPageWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
-        ),
-        FFRoute(
           name: PerfilWidget.routeName,
           path: PerfilWidget.routePath,
           builder: (context, params) => PerfilWidget(),
@@ -105,24 +101,55 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RegisterPageWidget(),
         ),
         FFRoute(
-          name: ComponenteCamisetasWidget.routeName,
-          path: ComponenteCamisetasWidget.routePath,
-          builder: (context, params) => ComponenteCamisetasWidget(),
-        ),
-        FFRoute(
           name: WelcomeWidget.routeName,
           path: WelcomeWidget.routePath,
           builder: (context, params) => WelcomeWidget(),
         ),
         FFRoute(
-          name: CrudCamisasWidget.routeName,
-          path: CrudCamisasWidget.routePath,
-          builder: (context, params) => CrudCamisasWidget(),
-        ),
-        FFRoute(
           name: HomePageCopyWidget.routeName,
           path: HomePageCopyWidget.routePath,
           builder: (context, params) => HomePageCopyWidget(),
+        ),
+        FFRoute(
+          name: OrdenConfirmadaWidget.routeName,
+          path: OrdenConfirmadaWidget.routePath,
+          asyncParams: {
+            'orden': getDoc(['orden'], OrdenRecord.fromSnapshot),
+          },
+          builder: (context, params) => OrdenConfirmadaWidget(
+            orden: params.getParam(
+              'orden',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: DashboardAdminWidget.routeName,
+          path: DashboardAdminWidget.routePath,
+          builder: (context, params) => DashboardAdminWidget(),
+        ),
+        FFRoute(
+          name: PedidoDetallesAdminWidget.routeName,
+          path: PedidoDetallesAdminWidget.routePath,
+          asyncParams: {
+            'orden': getDoc(['orden'], OrdenRecord.fromSnapshot),
+          },
+          builder: (context, params) => PedidoDetallesAdminWidget(
+            orden: params.getParam(
+              'orden',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AgregarProductoWidget.routeName,
+          path: AgregarProductoWidget.routePath,
+          builder: (context, params) => AgregarProductoWidget(),
+        ),
+        FFRoute(
+          name: CarritoWidget.routeName,
+          path: CarritoWidget.routePath,
+          builder: (context, params) => CarritoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

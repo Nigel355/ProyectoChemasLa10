@@ -30,34 +30,22 @@ class CamisasRecord extends FirestoreRecord {
   double get precio => _precio ?? 0.0;
   bool hasPrecio() => _precio != null;
 
-  // "en_oferta" field.
-  bool? _enOferta;
-  bool get enOferta => _enOferta ?? false;
-  bool hasEnOferta() => _enOferta != null;
-
-  // "precio_oferta" field.
-  double? _precioOferta;
-  double get precioOferta => _precioOferta ?? 0.0;
-  bool hasPrecioOferta() => _precioOferta != null;
-
-  // "cantidad" field.
-  int? _cantidad;
-  int get cantidad => _cantidad ?? 0;
-  bool hasCantidad() => _cantidad != null;
-
   // "imagen" field.
   String? _imagen;
   String get imagen => _imagen ?? '';
   bool hasImagen() => _imagen != null;
 
+  // "disponible" field.
+  bool? _disponible;
+  bool get disponible => _disponible ?? false;
+  bool hasDisponible() => _disponible != null;
+
   void _initializeFields() {
     _nombre = snapshotData['nombre'] as String?;
     _descripcion = snapshotData['descripcion'] as String?;
     _precio = castToType<double>(snapshotData['precio']);
-    _enOferta = snapshotData['en_oferta'] as bool?;
-    _precioOferta = castToType<double>(snapshotData['precio_oferta']);
-    _cantidad = castToType<int>(snapshotData['cantidad']);
     _imagen = snapshotData['imagen'] as String?;
+    _disponible = snapshotData['disponible'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -98,20 +86,16 @@ Map<String, dynamic> createCamisasRecordData({
   String? nombre,
   String? descripcion,
   double? precio,
-  bool? enOferta,
-  double? precioOferta,
-  int? cantidad,
   String? imagen,
+  bool? disponible,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'nombre': nombre,
       'descripcion': descripcion,
       'precio': precio,
-      'en_oferta': enOferta,
-      'precio_oferta': precioOferta,
-      'cantidad': cantidad,
       'imagen': imagen,
+      'disponible': disponible,
     }.withoutNulls,
   );
 
@@ -126,22 +110,13 @@ class CamisasRecordDocumentEquality implements Equality<CamisasRecord> {
     return e1?.nombre == e2?.nombre &&
         e1?.descripcion == e2?.descripcion &&
         e1?.precio == e2?.precio &&
-        e1?.enOferta == e2?.enOferta &&
-        e1?.precioOferta == e2?.precioOferta &&
-        e1?.cantidad == e2?.cantidad &&
-        e1?.imagen == e2?.imagen;
+        e1?.imagen == e2?.imagen &&
+        e1?.disponible == e2?.disponible;
   }
 
   @override
-  int hash(CamisasRecord? e) => const ListEquality().hash([
-        e?.nombre,
-        e?.descripcion,
-        e?.precio,
-        e?.enOferta,
-        e?.precioOferta,
-        e?.cantidad,
-        e?.imagen
-      ]);
+  int hash(CamisasRecord? e) => const ListEquality()
+      .hash([e?.nombre, e?.descripcion, e?.precio, e?.imagen, e?.disponible]);
 
   @override
   bool isValidKey(Object? o) => o is CamisasRecord;

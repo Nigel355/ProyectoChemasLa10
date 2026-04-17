@@ -60,6 +60,11 @@ class CamisasSeleccionadasRecord extends FirestoreRecord {
   DocumentReference? get usuario => _usuario;
   bool hasUsuario() => _usuario != null;
 
+  // "cantidad" field.
+  int? _cantidad;
+  int get cantidad => _cantidad ?? 0;
+  bool hasCantidad() => _cantidad != null;
+
   void _initializeFields() {
     _camisa = snapshotData['camisa'] as DocumentReference?;
     _nombre = snapshotData['nombre'] as String?;
@@ -70,6 +75,7 @@ class CamisasSeleccionadasRecord extends FirestoreRecord {
     _carrito = snapshotData['carrito'] as DocumentReference?;
     _talla = snapshotData['talla'] as String?;
     _usuario = snapshotData['usuario'] as DocumentReference?;
+    _cantidad = castToType<int>(snapshotData['cantidad']);
   }
 
   static CollectionReference get collection =>
@@ -118,6 +124,7 @@ Map<String, dynamic> createCamisasSeleccionadasRecordData({
   DocumentReference? carrito,
   String? talla,
   DocumentReference? usuario,
+  int? cantidad,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -130,6 +137,7 @@ Map<String, dynamic> createCamisasSeleccionadasRecordData({
       'carrito': carrito,
       'talla': talla,
       'usuario': usuario,
+      'cantidad': cantidad,
     }.withoutNulls,
   );
 
@@ -150,7 +158,8 @@ class CamisasSeleccionadasRecordDocumentEquality
         e1?.subtotal == e2?.subtotal &&
         e1?.carrito == e2?.carrito &&
         e1?.talla == e2?.talla &&
-        e1?.usuario == e2?.usuario;
+        e1?.usuario == e2?.usuario &&
+        e1?.cantidad == e2?.cantidad;
   }
 
   @override
@@ -163,7 +172,8 @@ class CamisasSeleccionadasRecordDocumentEquality
         e?.subtotal,
         e?.carrito,
         e?.talla,
-        e?.usuario
+        e?.usuario,
+        e?.cantidad
       ]);
 
   @override

@@ -49,4 +49,10 @@ class FFAppState extends ChangeNotifier {
   set contador(int value) {
     _contador = value;
   }
+
+  String _sinpeComprobante = '';
+  String get sinpeComprobante => _sinpeComprobante;
+  set sinpeComprobante(String value) {
+    _sinpeComprobante = value;
+  }
 }

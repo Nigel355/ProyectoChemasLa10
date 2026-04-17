@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -30,23 +31,23 @@ class CarritoRecord extends FirestoreRecord {
   bool get activo => _activo ?? false;
   bool hasActivo() => _activo != null;
 
-  // "cantidad" field.
-  int? _cantidad;
-  int get cantidad => _cantidad ?? 0;
-  bool hasCantidad() => _cantidad != null;
+  // "monto" field.
+  double? _monto;
+  double get monto => _monto ?? 0.0;
+  bool hasMonto() => _monto != null;
 
   // "camisaSeleccionada" field.
-  DocumentReference? _camisaSeleccionada;
-  DocumentReference? get camisaSeleccionada => _camisaSeleccionada;
+  List<DocumentReference>? _camisaSeleccionada;
+  List<DocumentReference> get camisaSeleccionada =>
+      _camisaSeleccionada ?? const [];
   bool hasCamisaSeleccionada() => _camisaSeleccionada != null;
 
   void _initializeFields() {
     _usuario = snapshotData['usuario'] as DocumentReference?;
     _contadorItems = castToType<int>(snapshotData['contadorItems']);
     _activo = snapshotData['activo'] as bool?;
-    _cantidad = castToType<int>(snapshotData['cantidad']);
-    _camisaSeleccionada =
-        snapshotData['camisaSeleccionada'] as DocumentReference?;
+    _monto = castToType<double>(snapshotData['monto']);
+    _camisaSeleccionada = getDataList(snapshotData['camisaSeleccionada']);
   }
 
   static CollectionReference get collection =>
@@ -87,16 +88,14 @@ Map<String, dynamic> createCarritoRecordData({
   DocumentReference? usuario,
   int? contadorItems,
   bool? activo,
-  int? cantidad,
-  DocumentReference? camisaSeleccionada,
+  double? monto,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'usuario': usuario,
       'contadorItems': contadorItems,
       'activo': activo,
-      'cantidad': cantidad,
-      'camisaSeleccionada': camisaSeleccionada,
+      'monto': monto,
     }.withoutNulls,
   );
 
@@ -108,11 +107,12 @@ class CarritoRecordDocumentEquality implements Equality<CarritoRecord> {
 
   @override
   bool equals(CarritoRecord? e1, CarritoRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.usuario == e2?.usuario &&
         e1?.contadorItems == e2?.contadorItems &&
         e1?.activo == e2?.activo &&
-        e1?.cantidad == e2?.cantidad &&
-        e1?.camisaSeleccionada == e2?.camisaSeleccionada;
+        e1?.monto == e2?.monto &&
+        listEquality.equals(e1?.camisaSeleccionada, e2?.camisaSeleccionada);
   }
 
   @override
@@ -120,7 +120,7 @@ class CarritoRecordDocumentEquality implements Equality<CarritoRecord> {
         e?.usuario,
         e?.contadorItems,
         e?.activo,
-        e?.cantidad,
+        e?.monto,
         e?.camisaSeleccionada
       ]);
 

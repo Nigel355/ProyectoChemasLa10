@@ -22,3 +22,35 @@ double? subtotalCarrito(
   }
   return cantidad * precio; // Return the subtotal
 }
+
+double iva(double monto) {
+  return monto * 0.13;
+}
+
+double totalOrden(
+  double monto,
+  double shipping,
+) {
+  return monto + (monto * 0.13) + shipping;
+}
+
+double? aplicarCodigoDescuento(
+  double? precioTotalOrden,
+  String? codigoDescuento,
+) {
+  if (precioTotalOrden == null) {
+    return null;
+  }
+
+  double descuento = 0.0;
+
+  if (codigoDescuento != null) {
+    if (codigoDescuento == 'DESCUENTO10') {
+      descuento = 0.10;
+    } else if (codigoDescuento == 'DESCUENTO20') {
+      descuento = 0.20;
+    }
+  }
+
+  return precioTotalOrden - (precioTotalOrden * descuento);
+}

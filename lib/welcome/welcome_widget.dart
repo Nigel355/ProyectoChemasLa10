@@ -353,17 +353,14 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                             EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (valueOrDefault(currentUserDocument?.rol, '') ==
-                                'cliente') {
-                              FFAppState().Rol2 = 'administrador';
-                              safeSetState(() {});
-
+                            if ((valueOrDefault(currentUserDocument?.rol, '') ==
+                                    'cliente') ||
+                                (valueOrDefault(
+                                            currentUserDocument?.rol, '') ==
+                                        '')) {
                               context.pushNamed(HomePageCopyWidget.routeName);
                             } else {
-                              FFAppState().Rol2 = 'cliente';
-                              safeSetState(() {});
-
-                              context.pushNamed(PerfilWidget.routeName);
+                              context.pushNamed(DashboardAdminWidget.routeName);
                             }
                           },
                           text: 'Ingresar',

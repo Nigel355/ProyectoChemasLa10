@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -50,6 +51,16 @@ class UsersRecord extends FirestoreRecord {
   String get rol => _rol ?? '';
   bool hasRol() => _rol != null;
 
+  // "listaOrden" field.
+  List<DocumentReference>? _listaOrden;
+  List<DocumentReference> get listaOrden => _listaOrden ?? const [];
+  bool hasListaOrden() => _listaOrden != null;
+
+  // "direccion" field.
+  String? _direccion;
+  String get direccion => _direccion ?? '';
+  bool hasDireccion() => _direccion != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -58,6 +69,8 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _rol = snapshotData['rol'] as String?;
+    _listaOrden = getDataList(snapshotData['listaOrden']);
+    _direccion = snapshotData['direccion'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -101,6 +114,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   String? rol,
+  String? direccion,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -111,6 +125,7 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'rol': rol,
+      'direccion': direccion,
     }.withoutNulls,
   );
 
@@ -122,13 +137,16 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.rol == e2?.rol;
+        e1?.rol == e2?.rol &&
+        listEquality.equals(e1?.listaOrden, e2?.listaOrden) &&
+        e1?.direccion == e2?.direccion;
   }
 
   @override
@@ -139,7 +157,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.rol
+        e?.rol,
+        e?.listaOrden,
+        e?.direccion
       ]);
 
   @override
