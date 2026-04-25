@@ -55,4 +55,22 @@ class FFAppState extends ChangeNotifier {
   set sinpeComprobante(String value) {
     _sinpeComprobante = value;
   }
+
+  String _codigoDescuentoInput = '';
+  String get codigoDescuentoInput => _codigoDescuentoInput;
+  set codigoDescuentoInput(String value) {
+    _codigoDescuentoInput = value;
+  }
+
+  double _precioTotal = 0.0;
+  double get precioTotal => _precioTotal;
+  set precioTotal(double value) {
+    _precioTotal = value;
+  }
+
+  double _precioConDescuento = 0.0;
+  double get precioConDescuento => _precioConDescuento;
+  set precioConDescuento(double value) {
+    _precioConDescuento = value;
+  }
 }

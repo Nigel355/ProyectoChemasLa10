@@ -150,6 +150,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: CarritoWidget.routeName,
           path: CarritoWidget.routePath,
           builder: (context, params) => CarritoWidget(),
+        ),
+        FFRoute(
+          name: CarritoCopyWidget.routeName,
+          path: CarritoCopyWidget.routePath,
+          builder: (context, params) => CarritoCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

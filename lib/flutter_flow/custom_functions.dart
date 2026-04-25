@@ -54,3 +54,25 @@ double? aplicarCodigoDescuento(
 
   return precioTotalOrden - (precioTotalOrden * descuento);
 }
+
+double? totalOrdenConDescuento(
+  double monto,
+  double shipping,
+  String? codigoDescuento,
+) {
+  double total = monto + (monto * 0.13) + shipping;
+
+  double descuento = 0.0;
+
+  if (codigoDescuento != null) {
+    codigoDescuento = codigoDescuento.toUpperCase().trim();
+
+    if (codigoDescuento == 'DESCUENTO10') {
+      descuento = 0.10;
+    } else if (codigoDescuento == 'DESCUENTO20') {
+      descuento = 0.20;
+    }
+  }
+
+  return total - (total * descuento);
+}

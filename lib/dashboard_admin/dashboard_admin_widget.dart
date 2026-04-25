@@ -82,36 +82,7 @@ class _DashboardAdminWidgetState extends State<DashboardAdminWidget> {
                       FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                    child: Container(
-                      width: 40.0,
-                      height: 40.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.network(
-                          'https://images.unsplash.com/photo-1627901324632-e7a191d43114?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzYzMTE3MDd8&ixlib=rb-4.1.0&q=80&w=1080',
-                          width: 40.0,
-                          height: 40.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -257,8 +228,8 @@ class _DashboardAdminWidgetState extends State<DashboardAdminWidget> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               22.0),
-                                                      child: Image.network(
-                                                        'https://images.unsplash.com/photo-1602463843491-1becaf199ad8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzYzMTE3MDd8&ixlib=rb-4.1.0&q=80&w=1080',
+                                                      child: Image.asset(
+                                                        'assets/images/R_(1).png',
                                                         width: 44.0,
                                                         height: 44.0,
                                                         fit: BoxFit.cover,
@@ -723,8 +694,8 @@ class _DashboardAdminWidgetState extends State<DashboardAdminWidget> {
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
-                                                      child: Image.network(
-                                                        'https://picsum.photos/seed/659/600',
+                                                      child: Image.asset(
+                                                        'assets/images/R_(1).png',
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -812,6 +783,27 @@ class _DashboardAdminWidgetState extends State<DashboardAdminWidget> {
                                                       ),
                                                     ].divide(
                                                         SizedBox(height: 12.0)),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await listViewUsersRecord
+                                                          .reference
+                                                          .delete();
+                                                    },
+                                                    child: Icon(
+                                                      Icons
+                                                          .delete_forever_sharp,
+                                                      color: Color(0x86A30000),
+                                                      size: 24.0,
+                                                    ),
                                                   ),
                                                 ].divide(SizedBox(width: 12.0)),
                                               );

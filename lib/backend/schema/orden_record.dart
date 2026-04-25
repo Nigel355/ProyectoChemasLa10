@@ -51,12 +51,6 @@ class OrdenRecord extends FirestoreRecord {
   DocumentReference? get carrito => _carrito;
   bool hasCarrito() => _carrito != null;
 
-  // "camisasSeleccionadas" field.
-  List<DocumentReference>? _camisasSeleccionadas;
-  List<DocumentReference> get camisasSeleccionadas =>
-      _camisasSeleccionadas ?? const [];
-  bool hasCamisasSeleccionadas() => _camisasSeleccionadas != null;
-
   // "costoEnvio" field.
   double? _costoEnvio;
   double get costoEnvio => _costoEnvio ?? 0.0;
@@ -77,6 +71,12 @@ class OrdenRecord extends FirestoreRecord {
   String get direccion => _direccion ?? '';
   bool hasDireccion() => _direccion != null;
 
+  // "camisasSeleccionadas" field.
+  List<DocumentReference>? _camisasSeleccionadas;
+  List<DocumentReference> get camisasSeleccionadas =>
+      _camisasSeleccionadas ?? const [];
+  bool hasCamisasSeleccionadas() => _camisasSeleccionadas != null;
+
   void _initializeFields() {
     _nombre = snapshotData['nombre'] as String?;
     _monto = castToType<double>(snapshotData['monto']);
@@ -85,11 +85,11 @@ class OrdenRecord extends FirestoreRecord {
     _fechaCreacion = snapshotData['fecha_creacion'] as DateTime?;
     _user = snapshotData['user'] as DocumentReference?;
     _carrito = snapshotData['carrito'] as DocumentReference?;
-    _camisasSeleccionadas = getDataList(snapshotData['camisasSeleccionadas']);
     _costoEnvio = castToType<double>(snapshotData['costoEnvio']);
     _metodoPago = snapshotData['metodoPago'] as String?;
     _tipoEnvio = snapshotData['tipoEnvio'] as String?;
     _direccion = snapshotData['direccion'] as String?;
+    _camisasSeleccionadas = getDataList(snapshotData['camisasSeleccionadas']);
   }
 
   static CollectionReference get collection =>
@@ -170,12 +170,11 @@ class OrdenRecordDocumentEquality implements Equality<OrdenRecord> {
         e1?.fechaCreacion == e2?.fechaCreacion &&
         e1?.user == e2?.user &&
         e1?.carrito == e2?.carrito &&
-        listEquality.equals(
-            e1?.camisasSeleccionadas, e2?.camisasSeleccionadas) &&
         e1?.costoEnvio == e2?.costoEnvio &&
         e1?.metodoPago == e2?.metodoPago &&
         e1?.tipoEnvio == e2?.tipoEnvio &&
-        e1?.direccion == e2?.direccion;
+        e1?.direccion == e2?.direccion &&
+        listEquality.equals(e1?.camisasSeleccionadas, e2?.camisasSeleccionadas);
   }
 
   @override
@@ -187,11 +186,11 @@ class OrdenRecordDocumentEquality implements Equality<OrdenRecord> {
         e?.fechaCreacion,
         e?.user,
         e?.carrito,
-        e?.camisasSeleccionadas,
         e?.costoEnvio,
         e?.metodoPago,
         e?.tipoEnvio,
-        e?.direccion
+        e?.direccion,
+        e?.camisasSeleccionadas
       ]);
 
   @override

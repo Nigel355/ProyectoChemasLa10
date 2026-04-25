@@ -12,3 +12,4 @@ export '/pedido_detalles_admin/pedido_detalles_admin_widget.dart'
 export '/agregar_producto/agregar_producto_widget.dart'
     show AgregarProductoWidget;
 export '/carrito/carrito_widget.dart' show CarritoWidget;
+export '/carrito_copy/carrito_copy_widget.dart' show CarritoCopyWidget;

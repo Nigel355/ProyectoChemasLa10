@@ -12,7 +12,20 @@
           "package_name": "com.mycompany.proyectogrupo09chemasla10"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1017933192927-mu7v3sg0lr0i79qcs9goqtduupv0fukg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.proyectogrupo09chemasla10",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1017933192927-ua6bpf8b6c3hj5hu1p78gg01gl0fbb8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA7WloiaymkpjwqjTYjLun28-wqKLu3enE"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017933192927-ua6bpf8b6c3hj5hu1p78gg01gl0fbb8j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1017933192927-1dhoqd28di5vtpu7rgueaej0bv1famhk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.proyectogrupo09chemasla10"
+              }
+            }
+          ]
         }
       }
     }
